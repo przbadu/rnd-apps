@@ -20,5 +20,5 @@ class Quote < ApplicationRecord
   # after_destroy_commit -> { broadcast_remove_to 'quotes' }
 
   # shorthand
-  broadcasts_to ->(_quote) { 'quotes' }, inserts_by: :prepend
+  broadcasts_to ->(quote) { [quote.company, 'quotes'] }, inserts_by: :prepend
 end
